@@ -191,6 +191,8 @@ CalculationResult_t KinematicsCalc::forwardKinematicsOptimized(const std::vector
     Matrix<calc_t> transT(4, 4); // Transformation matrix from N-1 to N frame
 
     positionToTransformMatrix(Position_t(), baseT); // Get base matrix
+    DEBUG_STR("Base matrix transform");
+    DEBUG_MATRIX(baseT);
     workT = baseT;
 
     // Calculation the transformation matrix - T06 = T01 * T12 * T23 * T34 * T45 * T56
@@ -284,26 +286,3 @@ void KinematicsCalc::createDHFrameMatrix(calc_t theta, calc_t alfa, calc_t r, ca
     out.at(3, 2) = 0.0;
     out.at(3, 3) = 1.0;
 }
-
-// void KinematicsCalc::createDHtranformMatrix(size_t i, Matrix<calc_t> &out)
-// {
-//     out.at(0, 0) = cos(_man.theta[i]);
-//     out.at(0, 1) = -sin(_man.theta[i]) * cos(_man.alfa[i]);
-//     out.at(0, 2) = sin(_man.theta[i]) * sin(_man.alfa[i]);
-//     out.at(0, 3) = _man.r[i] * cos(_man.theta[i]);
-
-//     out.at(1, 0) = sin(_man.theta[i]);
-//     out.at(1, 1) = cos(_man.theta[i]) * cos(_man.alfa[i]);
-//     out.at(1, 2) = -cos(_man.theta[i]) * sin(_man.alfa[i]);
-//     out.at(1, 3) = _man.r[i] * sin(_man.theta[i]);
-
-//     out.at(2, 0) = 0.0;
-//     out.at(2, 1) = sin(_man.alfa[i]);
-//     out.at(2, 2) = cos(_man.alfa[i]);
-//     out.at(2, 3) = _man.d[i];
-
-//     out.at(3, 0) = 0.0;
-//     out.at(3, 1) = 0.0;
-//     out.at(3, 2) = 0.0;
-//     out.at(3, 3) = 1.0;
-// }

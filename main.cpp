@@ -39,8 +39,9 @@ int main()
     KinematicsCalc kin(std::move(man));
     Position_t pos;
 
-    kin.forwardKinematicsOptimized({-M_PI_4, 0, 0, M_PI_4, M_PI_4, 0}, pos);
+    kin.forwardKinematicsOptimized({0, M_PI_2, -M_PI_2, 0, 0, 0}, pos);
     printPos(pos, std::cout);
+
 
     std::vector<double> out(6);
     kin.inverseKinematicsOptimized(pos, out);
